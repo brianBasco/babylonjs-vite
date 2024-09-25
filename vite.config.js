@@ -6,6 +6,21 @@ export default defineConfig(({ command, mode }) => {
             alias: {
                 'babylonjs': mode === 'development' ? 'babylonjs/babylon.max' : 'babylonjs'
             }
-        }
+        },
+        server: {
+            fs: {
+              // Allow serving files outside of the root
+              allow: [
+                "../.."
+              ]
+            }
+          },
+        optimizeDeps: { exclude: ["@babylonjs/havok"] },
+        esbuild: {
+            supported: {
+                'top-level-await': true //browsers can handle top-level-await features
+            }
+        },  
     };
 });
+
